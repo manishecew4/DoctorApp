@@ -1,0 +1,39 @@
+{
+  "models": [
+    {
+      "title": "Claude Sonnet (OpenRouter)",
+      "provider": "openrouter",
+      "model": "anthropic/claude-sonnet-4-5",
+      "apiKey": "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"
+    },
+    {
+      "title": "Gemini Flash - Free (OpenRouter)",
+      "provider": "openrouter",
+      "model": "google/gemini-flash-1.5",
+      "apiKey": "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"
+    },
+    {
+      "title": "Llama 3.2 (Ollama - Local)",
+      "provider": "ollama",
+      "model": "llama3.2",
+      "apiBase": "http://localhost:11434"
+    },
+    {
+      "title": "Qwen Coder (Ollama - Local)",
+      "provider": "ollama",
+      "model": "qwen2.5-coder",
+      "apiBase": "http://localhost:11434"
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Autocomplete",
+    "provider": "ollama",
+    "model": "qwen2.5-coder",
+    "apiBase": "http://localhost:11434"
+  },
+  "embeddingsProvider": {
+    "provider": "ollama",
+    "model": "nomic-embed-text",
+    "apiBase": "http://localhost:11434"
+  }
+}
