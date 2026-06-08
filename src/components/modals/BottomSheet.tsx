@@ -18,6 +18,7 @@ const BottomSheet = ({
   isVisible,
   onBackdropPress,
 }: BottomSheetProps) => {
+
   return (
     <Modal
       isVisible={isVisible}

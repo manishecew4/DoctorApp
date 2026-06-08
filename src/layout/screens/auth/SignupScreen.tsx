@@ -4,11 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { useToast } from '../../../shared/context/ToastContext';
 import { useAppDispatch } from '@/shared/hooks/useRedux';
 import { signupAction } from '@/store/actions/authAction';
-import Routes from '@/navigation/navigationList'
+import Routes, { RouteKey } from '@/navigation/navigationList'
 
 const SignupScreen = () => {
   const { showToast } = useToast();
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<RouteKey>();
   const dispatch = useAppDispatch();
 
 
@@ -39,11 +39,10 @@ const SignupScreen = () => {
   const handleSignup = React.useCallback(async () => {
     try {
       await dispatch(signupAction(userData)).unwrap();
-      console.log("chdhdbddf---userInfo", userDataRef.current);
       showToast('Signup successful! Please login.', 'success');
       navigation.navigate(Routes.Login.id);
     } catch (error) {
-      console.log("chdhdbddf--handleSignup-error", error);
+      console.error("chdhdbddf--handleSignup-error", error);
       showToast(`${error}` || 'Signup failed', 'error');
     }
   }, [navigation, showToast, userData, dispatch]);

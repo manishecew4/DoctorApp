@@ -7,12 +7,12 @@ import {
     todayAppointmentsData,
     upcomingAppointmentsData,
 } from '@/testData'
-import appScreens from '@/navigation/navigationList'
+import { RouteKey } from '@/navigation/navigationList'
 import { DoctorAppointmentItem } from '@/components/appointmentsDoc/AppointmentList'
 import Routes from '@/navigation/navigationList'
 
 const DoctorHome = () => {
-    const navigation = useNavigation<any>()
+    const navigation = useNavigation<RouteKey>()
 
     const getPreviewData = React.useCallback((data: DoctorAppointmentItem[]) => {
         return data.slice(0, 3)
@@ -20,7 +20,7 @@ const DoctorHome = () => {
 
     const navigateToAppointmentList = React.useCallback(
         (listType: string, title: string) => {
-            navigation.navigate(Routes.DoctorAppointmentsList, {
+            navigation.navigate(Routes.DoctorAppointmentsList.id, {
                 listType,
                 title,
             })

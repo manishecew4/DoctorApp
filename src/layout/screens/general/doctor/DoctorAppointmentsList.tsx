@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { NavigationProp, RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '@/navigation/AppNavigator';
 import {
   cancelledAppointmentsData,
@@ -23,7 +23,7 @@ const appointmentDataMap: Record<string, DoctorAppointmentItem[]> = {
 };
 
 const DoctorAppointmentsList = () => {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp>();
   const route = useRoute<AppointmentListRouteProp>();
   const { listType, title } = route.params;
 

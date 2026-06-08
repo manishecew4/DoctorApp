@@ -49,12 +49,21 @@ const AppSelect = ({
     [onChange],
   );
 
+  const onSelectOptionPress = React.useCallback(
+    () => {
+      setIsOpen(true);
+    },
+    [],
+  );
+
+
+
   return (
-    <View style={[styles.container,style]}>
+    <View style={[styles.container, style]}>
       {title && (
         <AppText style={[css.mb5, css.ml5, css.fontMedium]}>{title}</AppText>
       )}
-      <Pressable style={styles.trigger} onPress={() => setIsOpen(true)}>
+      <Pressable style={styles.trigger} onPress={onSelectOptionPress}>
         <AppText
           style={selectedOption ? styles.selectedText : styles.placeholder}
         >

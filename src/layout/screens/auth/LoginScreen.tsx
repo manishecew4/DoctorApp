@@ -1,3 +1,4 @@
+/* trunk-ignore-all(prettier) */
 import { StyleSheet } from 'react-native';
 import React from 'react';
 import LoginView from '../../views/auth/LoginView';
@@ -20,7 +21,6 @@ const LoginScreen = () => {
   const getUserData = React.useCallback(async () => {
     const userData = await storageService.getUser();
     existingUserRef.current = userData;
-    console.log('userData', userData);
   }, []);
 
   React.useEffect(() => {
@@ -39,10 +39,11 @@ const LoginScreen = () => {
 
   const handleLogin = React.useCallback(async () => {
     try {
+      /* trunk-ignore(eslint/@typescript-eslint/no-unused-vars) */
       const response = await dispatch(loginAction(loginData)).unwrap();
       showToast('Login successful', 'success');
-      const userRole: any = response?.user?.role;
-      console.log("dhfbdhbfhd---response", userRole);
+      // const userRole: any = response?.user?.role;
+      // console.log("dhfbdhbfhd---response", userRole);
     } catch (error: any) {
       showToast(error || 'Login failed', 'error');
     }
