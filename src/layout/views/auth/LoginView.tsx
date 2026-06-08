@@ -5,7 +5,6 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
@@ -14,10 +13,10 @@ import ContainerView from '../../../components/basic/ContainerView';
 import css from '../../../styles/GlobalStyle';
 import AppInput from '../../../components/Inputs/AppInput';
 import FastImage from '@d11/react-native-fast-image';
-import { Images } from '../../../constants/images';
+import { IMAGES } from '../../../constants/images';
 import AppButton from '../../../components/buttons/AppButton';
 import AppText from '@/components/basic/AppText';
-import appScreens from '@/navigators/navigationList';
+import Routes from '@/navigation/navigationList';
 
 export type LoginViewPropsType = {
   userEmail?: string;
@@ -42,7 +41,7 @@ const LoginView = (LoginProps: LoginViewPropsType) => {
   );
 
   const onPressSignupText = React.useCallback(() => {
-    navigation.navigate(appScreens.Signup);
+    navigation.navigate(Routes.Signup.id);
   }, [navigation]);
 
   return (
@@ -59,7 +58,7 @@ const LoginView = (LoginProps: LoginViewPropsType) => {
           >
             <View style={[css.f1, css.pt30]}>
               <FastImage
-                source={Images.login}
+                source={IMAGES.login}
                 style={styles.image}
                 resizeMode="contain"
               />
@@ -85,7 +84,7 @@ const LoginView = (LoginProps: LoginViewPropsType) => {
                   onPress={handleLogin}
                   style={styles.buttonStyle}
                 />
-                 <AppText style={[css.mt20, css.tac, css.fontMedium]}>
+                <AppText style={[css.mt20, css.tac, css.fontMedium]}>
                   Don't have an account?
                 </AppText>
                 <Pressable onPress={onPressSignupText}>

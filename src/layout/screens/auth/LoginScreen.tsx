@@ -37,16 +37,16 @@ const LoginScreen = () => {
     [],
   );
 
- const handleLogin = React.useCallback(async () => {
-  try {
-   const response =  await dispatch(loginAction(loginData)).unwrap();
-    showToast('Login successful', 'success');
-    const userRole = response?.user?.role;
-    console.log("dhfbdhbfhd---response", response?.user?.role);
-  } catch (error: any) {
-    showToast(error || 'Login failed', 'error');
-  }
-}, [dispatch, loginData, showToast]);
+  const handleLogin = React.useCallback(async () => {
+    try {
+      const response = await dispatch(loginAction(loginData)).unwrap();
+      showToast('Login successful', 'success');
+      const userRole: any = response?.user?.role;
+      console.log("dhfbdhbfhd---response", userRole);
+    } catch (error: any) {
+      showToast(error || 'Login failed', 'error');
+    }
+  }, [dispatch, loginData, showToast]);
 
 
   return (

@@ -1,10 +1,27 @@
 import { FlatList, StyleSheet, View } from 'react-native';
-import React, { useCallback } from 'react';
-import { doctorsAppointmentStatusData } from '@/testData';
+import React, { useCallback, useMemo } from 'react';
+import {
+    cancelledAppointmentsData,
+    completedAppointmentsData,
+    doctorsAppointmentStatusData,
+    todayAppointmentsData,
+    upcomingAppointmentsData,
+} from '@/testData';
 import css from '@/styles/GlobalStyle';
 import AppText from '../basic/AppText';
+import { getAppointmentStatusCardsWithCount } from '@/utils/sharedFunctions';
 
 const DoctorsAppointmentStatus = () => {
+    const statusData = useMemo(() => {
+        return getAppointmentStatusCardsWithCount(doctorsAppointmentStatusData, {
+            approved: todayAppointmentsData,
+            pending: todayAppointmentsData,
+            cancelled: cancelledAppointmentsData,
+            completed: completedAppointmentsData,
+            upcoming: upcomingAppointmentsData,
+        });
+    }, []);
+
     const renderStatus = useCallback(({ item }: any) => {
 
         let textColor = { color: item?.textColor };
@@ -32,7 +49,7 @@ const DoctorsAppointmentStatus = () => {
     return (
         <View style={styles.containerStyle}>
             <FlatList
-                data={doctorsAppointmentStatusData}
+                data={statusData}
                 renderItem={renderStatus}
                 horizontal
                 showsHorizontalScrollIndicator={false}

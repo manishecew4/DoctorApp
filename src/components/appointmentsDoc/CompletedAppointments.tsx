@@ -1,24 +1,23 @@
 import React from 'react';
-import { completedAppointmentsData } from '@/testData';
 import AppointmentList, { DoctorAppointmentItem } from './AppointmentList';
 
 type CompletedAppointmentsProps = {
-  data?: DoctorAppointmentItem[];
-  onPressViewAll?: () => void;
+  data: DoctorAppointmentItem[];
+  onPressViewMore?: () => void;
   onPressAppointment?: (appointment: DoctorAppointmentItem) => void;
 };
 
 const CompletedAppointments = ({
-  data = completedAppointmentsData,
-  onPressViewAll,
+  data,
+  onPressViewMore,
   onPressAppointment,
 }: CompletedAppointmentsProps) => {
   return (
     <AppointmentList
       title="Completed Patients"
       data={data}
-      actionTitle="View All"
-      onPressAction={onPressViewAll}
+      actionTitle="View More"
+      onPressAction={onPressViewMore}
       onPressItem={onPressAppointment}
     />
   );

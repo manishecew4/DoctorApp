@@ -8,20 +8,61 @@ import TodayAppointments from '@/components/appointmentsDoc/TodayAppointments'
 import UpcomingAppointments from '@/components/appointmentsDoc/UpcomingAppointments'
 import CompletedAppointments from '@/components/appointmentsDoc/CompletedAppointments'
 import CancelledAppointments from '@/components/appointmentsDoc/CancelledAppointments'
+import { DoctorAppointmentItem } from '@/components/appointmentsDoc/AppointmentList'
 
-const DoctorHomeView = () => {
+type DoctorHomeViewProps = {
+  todayAppointments: DoctorAppointmentItem[];
+  upcomingAppointments: DoctorAppointmentItem[];
+  completedAppointments: DoctorAppointmentItem[];
+  cancelledAppointments: DoctorAppointmentItem[];
+  onPressTodayViewMore: () => void;
+  onPressUpcomingViewMore: () => void;
+  onPressCompletedViewMore: () => void;
+  onPressCancelledViewMore: () => void;
+  onPressAppointment?: (appointment: DoctorAppointmentItem) => void;
+  onPressMenu?: () => void;
+};
+
+const DoctorHomeView = ({
+  todayAppointments,
+  upcomingAppointments,
+  completedAppointments,
+  cancelledAppointments,
+  onPressTodayViewMore,
+  onPressUpcomingViewMore,
+  onPressCompletedViewMore,
+  onPressCancelledViewMore,
+  onPressAppointment,
+  onPressMenu,
+}: DoctorHomeViewProps) => {
   return (
     <ContainerView>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.contentContainerStyle}
       >
-        <HeaderDoctor userInfo={userInfo} />
+        <HeaderDoctor userInfo={userInfo} onPressMenu={onPressMenu} />
         <DoctorsAppointmentStatus />
-        <TodayAppointments />
-        <UpcomingAppointments />
-        <CompletedAppointments />
-        <CancelledAppointments />
+        <TodayAppointments
+          data={todayAppointments}
+          onPressViewMore={onPressTodayViewMore}
+          onPressAppointment={onPressAppointment}
+        />
+        <UpcomingAppointments
+          data={upcomingAppointments}
+          onPressViewMore={onPressUpcomingViewMore}
+          onPressAppointment={onPressAppointment}
+        />
+        <CompletedAppointments
+          data={completedAppointments}
+          onPressViewMore={onPressCompletedViewMore}
+          onPressAppointment={onPressAppointment}
+        />
+        <CancelledAppointments
+          data={cancelledAppointments}
+          onPressViewMore={onPressCancelledViewMore}
+          onPressAppointment={onPressAppointment}
+        />
       </ScrollView>
     </ContainerView>
   )

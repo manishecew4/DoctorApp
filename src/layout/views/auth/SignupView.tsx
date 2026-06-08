@@ -13,7 +13,7 @@ import ContainerView from '../../../components/basic/ContainerView';
 import css from '../../../styles/GlobalStyle';
 import AppInput from '../../../components/Inputs/AppInput';
 import FastImage from '@d11/react-native-fast-image';
-import { Images } from '../../../constants/images';
+import { IMAGES } from '../../../constants/images';
 import AppButton from '../../../components/buttons/AppButton';
 import AppText from '../../../components/basic/AppText';
 // import AppSelect from '@/src/components/Inputs/AppSelect';
@@ -88,7 +88,7 @@ const SignupView = (SignupProps: SignupViewPropsType) => {
           >
             <View style={css.f1}>
               <FastImage
-                source={Images.login}
+                source={IMAGES.login}
                 style={styles.image}
                 resizeMode="contain"
               />

@@ -2,18 +2,16 @@ import {
   StyleSheet,
   Text,
   TextStyle,
-  useColorScheme,
-  View,
 } from 'react-native';
-import React, { useMemo } from 'react';
+import React, { memo } from 'react';
 import { Colors } from '../../constants/colors';
 import FONTS from '../../constants/fonts';
 
-const AppText = ({ children, style }: AppTextTypes) => {
-  return <Text style={[styles.defaultStyle, style]}>{children}</Text>;
+const AppText = ({ children, style, numberOfLines }: AppTextTypes) => {
+  return <Text style={[styles.defaultStyle, style]} numberOfLines={numberOfLines}>{children}</Text>;
 };
 
-export default AppText;
+export default memo(AppText);
 
 const styles = StyleSheet.create({
   defaultStyle: {
@@ -25,4 +23,5 @@ const styles = StyleSheet.create({
 interface AppTextTypes {
   children: React.ReactNode;
   style?: TextStyle | TextStyle[];
+  numberOfLines?: number;
 }

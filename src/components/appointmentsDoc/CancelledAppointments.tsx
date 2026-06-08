@@ -1,13 +1,24 @@
 import React from 'react';
-import { cancelledAppointmentsData } from '@/testData';
-import AppointmentList from './AppointmentList';
+import AppointmentList, { DoctorAppointmentItem } from './AppointmentList';
 
-const CancelledAppointments = () => {
+type CancelledAppointmentsProps = {
+  data: DoctorAppointmentItem[];
+  onPressViewMore?: () => void;
+  onPressAppointment?: (appointment: DoctorAppointmentItem) => void;
+};
+
+const CancelledAppointments = ({
+  data,
+  onPressViewMore,
+  onPressAppointment,
+}: CancelledAppointmentsProps) => {
   return (
     <AppointmentList
       title="Cancelled Patients"
-      data={cancelledAppointmentsData}
-      actionTitle="View All"
+      data={data}
+      actionTitle="View More"
+      onPressAction={onPressViewMore}
+      onPressItem={onPressAppointment}
     />
   );
 };

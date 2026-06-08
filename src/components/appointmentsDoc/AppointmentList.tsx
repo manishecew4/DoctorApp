@@ -46,7 +46,7 @@ const AppointmentList = ({
           style={[containerStyle, styles.cardStyle]}
           onPress={() => onPressItem?.(item)}
         >
-          <View>
+          <View style={styles.contentWrap}>
             <View style={styles.detailWrap}>
               <AppText style={styles.patientName}>{item?.patientName}</AppText>
               <AppText style={styles.concernText}>{item?.concern}</AppText>
@@ -60,7 +60,7 @@ const AppointmentList = ({
               <AppText
                 style={[
                   styles.tagText,
-                  css.mr10,
+                  css.mr5,
                   { color: item?.tagTextColor || '#068D7D' },
                 ]}
               >
@@ -86,12 +86,12 @@ const AppointmentList = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <AppText style={styles.titleStyle}>{title}</AppText>
-        <Pressable style={styles.actionWrap} onPress={onPressAction}>
-          <AppText style={[css.mr5,css.fontMedium]}>
-            View More
-          </AppText>
-          <AntDesign name="caret-right" size={20} color="#000" />
-        </Pressable>
+        {onPressAction ? (
+          <Pressable style={styles.actionWrap} onPress={onPressAction}>
+            <AppText style={styles.actionText}>{actionTitle || 'View More'}</AppText>
+            <AntDesign name="caret-right" size={16} color="#000" />
+          </Pressable>
+        ) : null}
       </View>
 
       <FlatList
@@ -109,18 +109,19 @@ export default AppointmentList;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    marginBottom: 18,
     marginHorizontal: 16,
     backgroundColor: Colors.white,
     borderRadius: 12,
-    padding: 16,
+    paddingHorizontal: 14,
+    paddingVertical: 14,
     position: 'relative',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   titleStyle: {
     fontSize: 16,
@@ -131,12 +132,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  actionText: {
+    fontSize: 14,
+    fontFamily: FONTS.medium,
+    color: Colors.black,
+    marginRight: 5,
+  },
   cardStyle: {
-    minHeight: 112,
+    minHeight: 86,
     borderRadius: 8,
     backgroundColor: Colors.white,
-    paddingHorizontal: 5,
-    paddingVertical: 18,
+    paddingHorizontal: 4,
+    paddingVertical: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -148,15 +155,18 @@ const styles = StyleSheet.create({
     borderRadius: 33,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 18,
     alignSelf: 'flex-start',
     // paddingHorizontal: 14,
-    paddingVertical: 5,
+    paddingTop: 5,
   },
   timeText: {
     fontSize: 15,
-    fontWeight: '700',
+    fontFamily: FONTS.bold,
     color: '#075E54',
+  },
+  contentWrap: {
+    flex: 1,
+    paddingRight: 10,
   },
   detailWrap: {
     flex: 1,
@@ -169,13 +179,13 @@ const styles = StyleSheet.create({
   },
   concernText: {
     fontSize: 14,
-    lineHeight: 21,
+    lineHeight: 19,
     color: '#5F6368',
     marginTop: 2,
   },
   tagText: {
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: 14,
+    fontFamily: FONTS.bold,
   },
   dividerStyle: {
     position: 'absolute',

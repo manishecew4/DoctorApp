@@ -1,14 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import PatientHomeView from '@/layout/views/patient/PatientHomeView';
 
 const PatientHome = () => {
-    return (
-        <View>
-            <Text>PatientHome</Text>
-        </View>
-    )
-}
+  const navigation = useNavigation<any>();
 
-export default PatientHome
+  const handleOpenDrawer = React.useCallback(() => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  }, [navigation]);
 
-const styles = StyleSheet.create({})
+  return <PatientHomeView onPressMenu={handleOpenDrawer} />;
+};
+
+export default PatientHome;

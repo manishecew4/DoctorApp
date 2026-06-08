@@ -36,6 +36,7 @@ export const signupAction = createAsyncThunk(
       const response = await api.post('/auth/signup', data);
       return response.data.data;
     } catch (error: any) {
+      console.error("bhdbfhd--signupAction--error", error)
       return rejectWithValue(
         error.response?.data?.message || 'Signup failed',
       );

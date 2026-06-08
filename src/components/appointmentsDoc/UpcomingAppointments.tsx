@@ -1,13 +1,24 @@
 import React from 'react';
-import { upcomingAppointmentsData } from '@/testData';
-import AppointmentList from './AppointmentList';
+import AppointmentList, { DoctorAppointmentItem } from './AppointmentList';
 
-const UpcomingAppointments = () => {
+type UpcomingAppointmentsProps = {
+  data: DoctorAppointmentItem[];
+  onPressViewMore?: () => void;
+  onPressAppointment?: (appointment: DoctorAppointmentItem) => void;
+};
+
+const UpcomingAppointments = ({
+  data,
+  onPressViewMore,
+  onPressAppointment,
+}: UpcomingAppointmentsProps) => {
   return (
     <AppointmentList
       title="Upcoming Patients"
-      data={upcomingAppointmentsData}
-      actionTitle="View Schedule"
+      data={data}
+      actionTitle="View More"
+      onPressAction={onPressViewMore}
+      onPressItem={onPressAppointment}
     />
   );
 };
